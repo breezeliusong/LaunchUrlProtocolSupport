@@ -24,6 +24,14 @@
         <uap:Extension Category="windows.protocol">
           <uap:Protocol Name="zattoo" DesiredView="default" />
         </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="doc">
+            <uap:Logo>Assets\AppNameAppList.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.doc</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
