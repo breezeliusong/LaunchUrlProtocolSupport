@@ -51,5 +51,22 @@ namespace LaunchUrlProtocolSupport
             Debug.WriteLine(prepareResult.CanTranscode);
             //await prepareResult.TranscodeAsync();
         }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var uriBing = new Uri(@"ms-windows-store://pdp/?productid=9nblggh52b5t");
+
+            // Launch the URI
+            var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
+
+            if (success)
+            {
+                // URI launched
+            }
+            else
+            {
+                // URI launch failed
+            }
+        }
     }
 }
