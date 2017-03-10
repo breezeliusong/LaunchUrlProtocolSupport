@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Calls;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.MediaProperties;
@@ -54,10 +55,9 @@ namespace LaunchUrlProtocolSupport
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var uriBing = new Uri(@"ms-windows-store://pdp/?productid=9nblggh52b5t");
-
+            var uri = new Uri(@"ms-settings:bluetooth");
             // Launch the URI
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
+            var success = await Windows.System.Launcher.LaunchUriAsync(uri);
 
             if (success)
             {
@@ -67,6 +67,14 @@ namespace LaunchUrlProtocolSupport
             {
                 // URI launch failed
             }
+        }
+
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            PhoneCallStore phoneCallStore = await PhoneCallManager.RequestStoreAsync();
+            Guid lineId = await phoneCallStore.GetDefaultLineAsync();
+            PhoneLine line = await PhoneLine.FromIdAsync(lineId);
+            var currentOperatorName = line.NetworkName;
         }
     }
 }
